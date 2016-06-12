@@ -6,12 +6,12 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define :testvm do |testvm|
-    testvm.vm.box = "precise32"
+    testvm.vm.box = "ubuntu/trusty64"
     testvm.vm.network :private_network, ip: "192.168.33.22"
   end
 
   config.vm.provision :ansible do |ansible|
-    ansible.playbook = "ansible/blog.yml"
+    ansible.playbook = "blog.yml"
     ansible.verbose = "vvv"
 
   end

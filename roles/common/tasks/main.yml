@@ -1,0 +1,8 @@
+- name: "Cria /opt/wordpress"
+  file: dest=/opt/wordpress mode=755 state=directory owner=www-data
+
+- name: "Corrige  permissões"
+  file: path=/opt/wordpress recurse=yes owner=www-data group=www-data
+
+- name: "Instala biblioteca python-mysqldb"
+  apt: name=python-mysqldb state=latest install_recommends=yes update_cache=yes
