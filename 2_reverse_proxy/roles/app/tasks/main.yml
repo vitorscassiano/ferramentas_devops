@@ -1,0 +1,14 @@
+- name: "Create directory /opt/app"
+  file: dest=/opt/app mode=755 state=directory owner=www-data
+
+- name: "Copy file http_server in src for dest"
+  copy: src=http_server.py dest=/opt/app/
+
+- name: "Create entry form server to supervisord"
+  template: src=app.conf dest=/etc/supervisor/conf.d/
+
+- name: "Restart supervisord"
+  service: name=supervisor state=restarted
+
+- name: "Start the application"
+  supervisorctl: name=app state=started
